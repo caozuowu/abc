@@ -5,15 +5,59 @@
  */
 
 var permutation = function(S) {
-
-    for (var l = 1; l <= S.length; l++) {
-        for (var i = 0; i < S.length-l; i++) {
-            var j = i+l
-            console.log(i,j)
+    var vs = S.split('')
+    var res = []
+    function swap(s, i, j) {
+        var temp = s[i]
+        s[i] = s[j]
+        s[j] = temp
+    }
+    function arrangement(s, i) {
+        if (i == s.length-1) {
+            var str = ''
+            for (var c of s) {
+                str += c
+            }
+            res.push(str)
+            return
+        }
+        for (var j = i ; j < s.length; j++) {
+            swap(s,i,j)
+            arrangement(s, i+1)
+            swap(s,i,j)
         }
     }
 
+    arrangement(vs, 0)
+    return res
+
 };
 
+
+/*
 var s = 'abc'
-permutation(s)
+console.log(permutation(s))
+Array(6) ["abc", "acb", "bac", "bca", "cba", "cab"]
+*/
+
+//动态规划
+var permutation_b = function(S) {
+    var res = [S[0]]
+    for (var i = 1; i < S.length; i++) {
+        var key = S[i]
+    }
+    console.log(res)
+}
+permutation_b('abc')
+// var s = 'abc'
+// var b = s.substr(1,1)
+// for (var i = 0; i <= s.length; i++) {
+//     var n = s.substr(0,i) + 'q' + s.substr(i,s.length)
+//     console.log(n)
+// }
+
+
+
+
+
+
